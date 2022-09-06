@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -e
+
+IMAGE="orga2"
+
+if [[ -z $(docker images | grep $IMAGE) ]]; then
+    echo "Docker image $IMAGE not found, building..."
+    SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+    docker build -t orga2 $SCRIPT_DIR
+fi
+
+exec docker run --rm -ti -v $(pwd):/workspace orga2 bash
