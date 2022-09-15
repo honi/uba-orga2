@@ -2,7 +2,6 @@ CC=c99
 CFLAGS=-Wall -Wextra -pedantic -O0 -g -lm -no-pie -z noexecstack
 NASM=nasm
 NASMFLAGS=-f elf64 -g -F DWARF
-LD=ld
 
 OUTPUT_PATH := bin
 OUTPUT_FILENAME := app
@@ -17,11 +16,7 @@ all: app
 
 app: $(OBJS)
 	@mkdir -p $(OUTPUT_PATH)
-ifeq ($(strip $(SRC_C)),)
-	$(LD) $^ -o $(OUTPUT_PATH)/$(OUTPUT_FILENAME)
-else
 	$(CC) $(CFLAGS) $^ -o $(OUTPUT_PATH)/$(OUTPUT_FILENAME)
-endif
 
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
