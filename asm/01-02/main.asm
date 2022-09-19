@@ -5,7 +5,7 @@ section .data
 %define ELEMENT_SIZE 4
 vector: times 16 dd 1 ; Escribimos 16 veces consecutivas un dd = double word (4 bytes).
 vector_size_b: equ $ - vector ; Calculamos el tamaño en bytes del vector.
-printf_format: db `Suma: %d\n`, 0 ; Por qué tienen que ser backticks?
+printf_format: db `Suma: %d\n`, 0
 
 section .text
 main:
@@ -24,7 +24,8 @@ main:
 
     ; Inicializamos rdi en 0 porque vamos a usar solo la parte baja de este registro
     ; para cargar los elementos del vector desde memoria.
-    ; Esto es necesario?
+    ; Esto es necesario? Creo que no porque al hacer mov a un registro de 32bits se
+    ; limpian automáticamente los 32bits de la parte alta.
     xor rdi, rdi
 
 .sum_cycle:

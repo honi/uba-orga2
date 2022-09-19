@@ -5,7 +5,7 @@ section .data
 %define ELEMENT_SIZE 4
 vector: times 16 dd 1 ; Escribimos 16 veces consecutivas un dd = double word (4 bytes).
 vector_size_b: equ $ - vector ; Calculamos el tamaño en bytes del vector.
-printf_format: db `Suma: %d\n`, 0 ; Por qué tienen que ser backticks?
+printf_format: db `Suma: %d\n`, 0
 
 section .text
 main:
