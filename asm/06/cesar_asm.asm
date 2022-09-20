@@ -47,6 +47,10 @@ cesar_asm:
     ; Seteamos el NULL char al final.
     mov byte [r13 + rcx], 0
 
+    ; Si la longitud del input es 0 ya terminamos.
+    cmp rcx, 0
+    je .exit
+
     ; Hacemos el cifrado caracter por caracter desde atrás.
 .cesar_loop:
     ; Leemos el caracter a transformar en al.
@@ -64,6 +68,7 @@ cesar_asm:
     mov [r13 + rcx - 1], al
     loop .cesar_loop
 
+.exit:
     ; Colocamos el puntero al resultado en el registro de retorno.
     mov rax, r13
 
