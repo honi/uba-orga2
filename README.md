@@ -6,5 +6,6 @@ Ciencias de la Computación - FCEN - UBA\
 ## Índice
 
 - [Ejercicios ASM x86](./asm)
+- [Ejercicios SIMD](./simd)
 - [Makefile Template](./etc/template)
 - [ORGA2 + MacOS](./etc/docker)
