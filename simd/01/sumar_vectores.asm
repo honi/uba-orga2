@@ -1,24 +1,19 @@
 global sumar_vectores
 
-section .data
-
 section .text
-
-; void sumar_vectores(uint16_t *a, uint16_t *b, uint16_t *res, int dimension)
-; rdi = a
-; rsi = b
-; rdx = res
-; rcx = dimension
-
 sumar_vectores:
+    ; void sumar_vectores(uint16_t *a, uint16_t *b, uint16_t *res, int dimension)
+    ; rdi = a
+    ; rsi = b
+    ; rdx = res
+    ; rcx = dimension
+
     ; Prólogo.
     push rbp
     mov rbp, rsp
 
-    ; Los registros xmm tienen 16 bytes y por precondición sabemos que dimensión es un
-    ; múltiplo de 16. Dividimos entonces por 16 para obtener la cantidad de iteraciones
-    ; que tenemos que hacer para procesar todo el array.
-    shr rcx, 4
+    ; Calculamos la cantidad de chunks que vamos a procesar.
+    shr rcx, 3
 
 .add:
     ; Cargamos los chunks a procesar.
