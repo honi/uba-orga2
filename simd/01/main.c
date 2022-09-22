@@ -27,7 +27,7 @@ int main() {
 
     sumar_vectores(a, b, res, dimension);
 
-    printf("res = {");
+    printf("{");
     for(int i = 0; i < dimension; i++) {
         printf("%u", res[i]);
         if (i != dimension - 1) printf(", ");
