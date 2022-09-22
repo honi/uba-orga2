@@ -13,7 +13,7 @@ int main() {
 
     inicializar_vector(vector, valor_inicial, dimension);
 
-    printf("res = {");
+    printf("{");
     for(int i = 0; i < dimension; i++) {
         printf("%d", vector[i]);
         if (i != dimension - 1) printf(", ");
