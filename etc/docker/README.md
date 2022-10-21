@@ -5,22 +5,36 @@ Este pequeño script levanta un container Docker con Ubuntu 22.10 y las herramie
 ## Configuración
 
 ### Docker
-Instalar [Docker](https://docs.docker.com/desktop/mac/install/) si no lo tenés.
+
+- Instalá [Docker](https://docs.docker.com/desktop/mac/install/) si no lo tenés.
+- Activá la opción para usar [VirtioFS](https://www.docker.com/blog/speed-boost-achievement-unlocked-on-docker-desktop-4-6-for-mac/) (sino vas a tener serios problemas de performance al leer/escribir archivos).
 
 ### PATH
 
-Agregá esta carpeta en tu `$PATH` así podes ejecutar el comando `orga2shell` desde cualquier ubicación.
+Agregá en tu `$PATH` la carpeta donde está este README así podes ejecutar el comando `orga2shell` desde cualquier ubicación.
 
 ### Imagen de Docker
 
-La primera vez que ejecutes el script se va a buildear la imagen de Docker. Esto puede tardar un ratito, pero después ya queda cacheado localmente.
+La primera vez que ejecutás el script se va a buildear la imagen de Docker. Esto puede tardar un ratito, pero después ya queda cacheado localmente.
 
 ## Modo de uso
 
-Te parás en cualquier carpeta de tu filesystem, generalmente donde tenes el código fuente en asembler o C, y ejecutas este comando.
+Te parás en cualquier carpeta de tu filesystem, generalmente donde tenes el código fuente en assembler o C, y ejecutás este comando.
 
 ```bash
 orga2shell
 ```
 
 Adentro del container, vas a tener montado en `/workspace` la carpeta del host (MacOS) donde estabas al momento de ejecutar el comando.
+
+## Bochs
+
+Para correr bochs hay que hacer algunos malabares porque tiene una interfaz gráfica. Si bien hay una opción para compilar Bochs de forma nativa para MacOS, no me funcionó. Lo que hacemos entonces es correr Bochs adentro del container usando `vncsrv` como display library. Algo así como correrlo en modo "headless" y luego conectarse desde afuera del container con algún cliente VNC, por ejemplo [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/).
+
+Adentro del container corrés Bochs normalmente, y luego de inicializar algunas cosas se queda en este mensaje esperando la conexión por VNC.
+
+```
+Bochs VNC server waiting for client
+```
+
+En MacOS abrís el cliente de VNC, te conectás a `localhost:5900` y listo.
