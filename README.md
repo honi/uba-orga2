@@ -5,7 +5,8 @@ Ciencias de la Computación - FCEN - UBA\
 
 ## Índice
 
-- [Ejercicios ASM x86](./asm)
-- [Ejercicios SIMD](./simd)
+- [1er Parcial](./parciales/01)
+- [Ejercicios C / ASM x86](./ejercicios/c_asm)
+- [Ejercicios SIMD](./ejercicios/simd)
 - [Makefile Template](./etc/template)
 - [ORGA2 + MacOS](./etc/docker)
