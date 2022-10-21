@@ -10,7 +10,7 @@ SRC_ASM := $(wildcard *.asm)
 HEADERS := $(wildcard *.h)
 OBJS := $(patsubst %.c,%.o,$(SRC_C) $(patsubst %.asm,%.o,$(SRC_ASM)))
 
-.PHONY: all clean
+.PHONY: all valgrind clean
 
 all: app
 
@@ -23,6 +23,9 @@ app: $(OBJS)
 
 %.o: %.asm $(HEADERS)
 	$(NASM) $(NASMFLAGS) $< -o $@
+
+valgrind: app
+	valgrind --leak-check=full --track-origins=yes $(OUTPUT_PATH)/$(OUTPUT_FILENAME)
 
 clean:
 	rm -f *.o
