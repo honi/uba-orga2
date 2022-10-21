@@ -38,3 +38,17 @@ Bochs VNC server waiting for client
 ```
 
 En MacOS abrís el cliente de VNC, te conectás a `localhost:5900` y listo.
+
+Si experimentás una performance muy mala (tarda muchísimo el make y/o correr Bochs), probablemente sea un problema con el mecanismo que usa Docker en MacOS para sincronizar los volumes. Una posible solución es copiar los archivos fuente a otro directorio dentro del container que esté fuera del volume compartido con MacOS.
+
+Por ejemplo, la config default coloca el volume compartido en `/workspace`, entonces antes de hacer make y correr Bochs podrías hacer esto:
+
+```bash
+mkdir /tmp/workspace
+cd /tmp/workspace
+cp -r /workspace/* .
+make
+bochs -q
+```
+
+Cada vez que modificas algún archivo y querés compilar y correr, tendrías que primero volver a hacer el `cp` para copiar los archivos modificados a la carpeta temporal (que está fuera del volume compartido).
