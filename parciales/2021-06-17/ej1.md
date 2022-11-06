@@ -71,12 +71,12 @@ Como los límites calculados exceden los 20 bits, vamos a configurar los descrip
 **Segmento de código**
 
 ```
-(0x88A94103 + 0x1000) >> 12 = 0x88A95
+0x88A94103 >> 12 = 0x88A94
 ```
 
 **Segmento de datos**
 ```
-(0x0039A002 + 0x1000) >> 12 = 0x0039B
+0x0039A002 >> 12 = 0x0039A
 ```
 
 *Nota: Hubiese sido más rápido y simple utilizar `0xFFFFF` como límite, pero ya los calculé.*
@@ -90,8 +90,8 @@ En el registro `GDTR` tenemos que cargar la dirección física donde está la GD
 | Index   | GDT Offset | Descripción     | Base          | Límite    | P   | DPL | S   | E   | DC  | RW  | A   | G   | DB  | L   |
 |---------|------------|-----------------|---------------|-----------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | `0x0`   | `0x00`     | Descriptor nulo | `0`           | `0`       | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `0` | `0` |
-| `0xC`   | `0x60`     | Código          | `0x00000010`  | `0x88A95` | `1` | `0` | `1` | `1` | `0` | `1` | `0` | `1` | `1` | `0` |
-| `0x6`   | `0x30`     | Datos           | `0xF0000000`  | `0x0039B` | `1` | `0` | `1` | `0` | `0` | `1` | `0` | `1` | `1` | `0` |
+| `0xC`   | `0x60`     | Código          | `0x00000010`  | `0x88A94` | `1` | `0` | `1` | `1` | `0` | `1` | `0` | `1` | `1` | `0` |
+| `0x6`   | `0x30`     | Datos           | `0xF0000000`  | `0x0039A` | `1` | `0` | `1` | `0` | `0` | `1` | `0` | `1` | `1` | `0` |
 
 Justificación de los atributos:
 
